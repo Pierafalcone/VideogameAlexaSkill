@@ -1,11 +1,11 @@
 let speechOutput;
 let reprompt;
-let welcomeOutput = "Benvenuti in questa skill";
+let welcomeOutput = "Benvenuti in questa skill, puoi dirmi: parlami dei videogiochi, oppure, raccontami qualcosa";
 let welcomeReprompt = "Chiedimi qualcosa";
 // 2. Skill Code =======================================================================================================
 "use strict";
 const Alexa = require('alexa-sdk');
-const APP_ID = undefined;  // TODO replace with your app ID (OPTIONAL).
+const APP_ID = 'amzn1.ask.skill.5e192b29-462c-4368-84ea-85bc8fd32fc5';  // TODO replace with your app ID (OPTIONAL).
 speechOutput = '';
 const data = [
 
@@ -18,6 +18,7 @@ const data = [
     'Ogni volta che Pac-Man mangia una monetina, ferma i suoi movimenti di un frame, rallentando i suoi progressi di circa il 10%, quanto basta per il successivo fantasma per raggiungerlo ',
     'PETA, nota associazione animalista, ebbe da ridire sulle battute di caccia alle balene presenti nel gioco Assassins Creed Black Flag. Ubisoft respinse le accuse dicendo di non approvare la caccia, ne lo stile di vita dei pirati.',
     'Grand Theft Auto era originariamente un gioco di corse chiamato Race and Chase tuttavia, un glitch fece sì che le auto della polizia iniziassero ad impazzire, investendo i pedoni. La cosa ebbe così tanto successo che gli sviluppatori ricostruiirono il gioco basandosi su questo',
+
 ];
 
 const handlers = {
@@ -39,12 +40,16 @@ const handlers = {
    },
    'SessionEndedRequest': function () {
 		speechOutput = '';
+		//this.emit(':saveState',true);//uncomment to save attributes to db on session end
 		this.emit(':tell', speechOutput);
    },
-   // amazon spot
 	'AMAZON.NavigateHomeIntent': function () {
 		speechOutput = '';
-        //Your custom intent handling goes here
+
+		//any intent slot variables are listed here for convenience
+
+
+		//Your custom intent handling goes here
 		speechOutput = "This is a place holder response for the intent named AMAZON.NavigateHomeIntent. This intent has no slots. Anything else?";
 		this.emit(":ask", speechOutput, speechOutput);
     },
@@ -53,7 +58,8 @@ const handlers = {
         const factIndex = Math.floor(Math.random()* factArr.length);
         const randomFact = factArr[factIndex];
 		speechOutput = randomFact;
-		this.emit(":ask", speechOutput, speechOutput);
+		this.emit(":tell", speechOutput, speechOutput);
+		shouldEndSession: true
     },	
 	'Unhandled': function () {
         speechOutput = "Non ho capito. Puoi ripetermelo in parole migliori?";
@@ -64,12 +70,18 @@ const handlers = {
 exports.handler = (event, context) => {
     const alexa = Alexa.handler(event, context);
     alexa.appId = APP_ID;
+    // To enable string internationalization (i18n) features, set a resources object.
+    //alexa.resources = languageStrings;
     alexa.registerHandlers(handlers);
+	//alexa.dynamoDBTableName = 'DYNAMODB_TABLE_NAME'; //uncomment this line to save attributes to DB
     alexa.execute();
 };
 
+//    END of Intent Handlers {} ========================================================================================
+// 3. Helper Function  =================================================================================================
 
 function resolveCanonical(slot){
+	//this function looks at the entity resolution part of request and returns the slot value if a synonyms is provided
 	let canonical;
     try{
 		canonical = slot.resolutions.resolutionsPerAuthority[0].values[0].value.name;
@@ -86,43 +98,51 @@ function delegateSlotCollection(){
     if (this.event.request.dialogState === "STARTED") {
       console.log("in Beginning");
 	  let updatedIntent= null;
+	  // updatedIntent=this.event.request.intent;
+      //optionally pre-fill slots: update the intent object with slot values for which
+      //you have defaults, then return Dialog.Delegate with this updated intent
+      // in the updatedIntent property
+      //this.emit(":delegate", updatedIntent); //uncomment this is using ASK SDK 1.0.9 or newer
+	  
+	  //this code is necessary if using ASK SDK versions prior to 1.0.9 
 	  if(this.isOverridden()) {
 			return;
 		}
 		this.handler.response = buildSpeechletResponse({
 			sessionAttributes: this.attributes,
 			directives: getDialogDirectives('Dialog.Delegate', updatedIntent, null),
-			shouldEndSession: false
+			shouldEndSession: true
 		});
 		this.emit(':responseReady', updatedIntent);
 		
     } else if (this.event.request.dialogState !== "COMPLETED") {
       console.log("in not completed");
+      // return a Dialog.Delegate directive with no updatedIntent property.
+      //this.emit(":delegate"); //uncomment this is using ASK SDK 1.0.9 or newer
+	  
+	  //this code necessary is using ASK SDK versions prior to 1.0.9
 		if(this.isOverridden()) {
 			return;
 		}
 		this.handler.response = buildSpeechletResponse({
 			sessionAttributes: this.attributes,
 			directives: getDialogDirectives('Dialog.Delegate', null, null),
-			shouldEndSession: false
+			shouldEndSession: true
 		});
 		this.emit(':responseReady');
 		
     } else {
       console.log("in completed");
       console.log("returning: "+ JSON.stringify(this.event.request.intent));
+      // Dialog is now complete and all required slots should be filled,
+      // so call your normal intent handler.
       return this.event.request.intent;
     }
 }
 
-
-function randomPhrase(array) {
-    let i = 0;
-    i = Math.floor(Math.random() * array.length);
-    return(array[i]);
-}
 function isSlotValid(request, slotName){
         let slot = request.intent.slots[slotName];
+        //console.log("request = "+JSON.stringify(request)); //uncomment if you want to see the request
         let slotValue;
 
         //if we have a slot, get the text and store it into speechOutput
@@ -135,6 +155,9 @@ function isSlotValid(request, slotName){
             return false;
         }
 }
+
+//These functions are here to allow dialog directives to work with SDK versions prior to 1.0.9
+//will be removed once Lambda templates are updated with the latest SDK
 
 function createSpeechObject(optionsParam) {
     if (optionsParam && optionsParam.type === 'SSML') {
