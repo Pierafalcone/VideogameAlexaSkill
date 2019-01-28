@@ -18,6 +18,27 @@ const data = [
     'Ogni volta che Pac-Man mangia una monetina, ferma i suoi movimenti di un frame, rallentando i suoi progressi di circa il 10%, quanto basta per il successivo fantasma per raggiungerlo ',
     'PETA, nota associazione animalista, ebbe da ridire sulle battute di caccia alle balene presenti nel gioco Assassins Creed Black Flag. Ubisoft respinse le accuse dicendo di non approvare la caccia, ne lo stile di vita dei pirati.',
     'Grand Theft Auto era originariamente un gioco di corse chiamato Race and Chase tuttavia, un glitch fece sì che le auto della polizia iniziassero ad impazzire, investendo i pedoni. La cosa ebbe così tanto successo che gli sviluppatori ricostruiirono il gioco basandosi su questo',
+    'In corea del sud, per i ragazzi di età inferiore ai sedici anni, è illegale giocare ai videogiochi dopo mezzanotte',
+    'La parola Nintendo, tradotta in italiano, significherebbe: la fortuna cade dal cielo',
+    'Recenti studi hanno confermato che chi gioca ai videogiochi non può più avere sogni lucidi (ovvero quei sogni dove si ha il pieno controllo di se stessi)',
+    'Alcuni storici incolparono l Atari per la grande crisi del videogioco del 1983. Atari ritenne, ormai, che il mercato fosse irrecuperabile e si dedicò alla produzione di progetti senza pretese, come il videogioco del cubo di Rubik',
+    'Il creatore di Dragon Slayer, si è ispirato alla rivista Playboy per creare la principessa',
+    'È calcolato che fino al 2011, il tempo trascorso da tutti i giocatori in World of Warcraft, è di, soli, 5,93 milioni di anni',
+    'Il 256esimo livello di pacman è ingiocabile a causa di un bug',
+    'Alcuni studi hanno stabilito che giocare ai videogiochi action, alleni a prendere più rapidamente decisioni nella vita reale; con più lucidità e precisione. I videogiocatori sono dunque più abituati al multitasking',
+    'Ostro, personaggio che spara uova dalla proboscide, viene descritto nel manuale di Super Mario 2 in queste parole: pensa di essere una ragazza e sputa uova dalla sua bocca',
+    'Nel 2011, in Inghilterra, un uomo di 46 anni risalì ad un ragazzino di 13 anni che lo uccideva troppe volte in Call of Duty, andando a picchiarlo sotto casa sua',
+    'Il famoso gioco Candy Crush, secondo alcuni esperti, sfrutterebbe gli stessi meccanismi mentali della dipendenza dal gioco d azzardo',
+    'Sono serviti più di 1000 attori per la creazione dei personaggi non giocanti di Red Dead Redemption 2',
+    'In Red Dead Redemption 2, si dice esista una città infestata di nome Tumbleweed, nota per i frequenti avvistamenti di spettri e per i rumori sospetti, che provengono dalla villa sulla collina che sovrasta questo luogo ormai disabitato',
+    'Fortnite, secondo i dati pubblicati da Recode, ha superato tutti i precedenti record di incassi sul mese singolo, superando videogame come Pokemon Go e League of Legend. Fortnite ha infatti incassato la bellezza di 318,3 milioni di dollari nel solo mese di maggio del 2018',
+    'Il gioco Mortal Kombat 2, era così popolare e giocatissimo nelle sale giochi, che alcuni cabinati furono dotati di sistemi di sicurezza antiscasso che impedissero di rubare la scheda madre del gioco, cosa già avvenuta prima di allora',
+    'La Eido, che produsse il primo Tomb Rider, voleva introdurre un cheat nel gioco che permettesse di denudare la protagonista, tuttavia il designer Toby Gard non lo consentì',
+    'L ordine degli assassini in Assassins Creed è ispirato ad un ordine relamente esistito tra l undicesimo ed il dodicesimo secolo, in Persia ed in Siria',
+    'Robbie Williams, famoso cantante appassionato di videogiochi, chiamò i suoi figli come i personaggi dei videogiochi che adorava: Zelda, da The Legend of Zelda. E Cody, da Final Fight',
+    'In Brasile, i videogiochi sono tassati del 120% perché una vecchia legge li mette al pari del gioco d azzardo',
+    'Il boo della serie di Super Mario, fantasmino che fa finta di nulla quando Mario lo guarda, e si avvicina con fare minaccioso quando lo ignora, è basato sulla moglie sgorbutica del programmatore Nintendo, Takashi Tezuka',
+    'Un gruppo di giocatori di Minecraft, sta lavorando tutt oggi con passione per ricreare alla perfezione la terra di mezzo de Il signore degli anelli'
 
 ];
 
